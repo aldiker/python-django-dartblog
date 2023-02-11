@@ -29,6 +29,7 @@
                         <div class="big-image">
                             <img src="{% static 'blog/img/post-image1.jpg' %}" alt="">
                         </div>
+
                         <div class="big-text">
                             <h3><a href="#">Post Title Goes Here.</a></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
@@ -42,6 +43,10 @@
                             </h4>
                         </div>
                     </div>
+                    <h1>{{ Base_DIR }}</h1>
+                    <h1>{{ STATIC_ROOT }}</h1>
+                    <h1>{% static 'lang-logo.png'%}</h1>
+                    <h1>{% static 'blog/img/post-image1.jpg' %}</h1>
                 </div>
                 {% for post in posts %}
                 <div class="col-md-3">
@@ -69,19 +74,21 @@
     <div class="pegination">
         <div class="nav-links">
             {% if page_obj.has_previous %}
-                <a class="page-numbers" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+            <a class="page-numbers" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-left"
+                                                                                        aria-hidden="true"></i></a>
             {% endif %}
 
             {% for p in page_obj.paginator.page_range %}
-                {% if page_obj.number == p %}
-                    <span class="page-numbers current">{{ p }}</span>
-                {% elif p > page_obj.number|add:-2 and p < page_obj.number|add:2 %}
-                    <a class="page-numbers" href="?page={{ p }}">{{ p }}</a>
-                {% endif %}
+            {% if page_obj.number == p %}
+            <span class="page-numbers current">{{ p }}</span>
+            {% elif p > page_obj.number|add:-2 and p < page_obj.number|add:2 %}
+            <a class="page-numbers" href="?page={{ p }}">{{ p }}</a>
+            {% endif %}
             {% endfor %}
 
             {% if page_obj.has_next %}
-                <a class="page-numbers" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a class="page-numbers" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right"
+                                                                                    aria-hidden="true"></i></a>
             {% endif %}
         </div>
     </div>
