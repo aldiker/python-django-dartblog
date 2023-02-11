@@ -1,0 +1,6 @@
+venv
+.idea
+static
+staticfiles
+.env
+
