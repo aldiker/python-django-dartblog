@@ -23,9 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-jgb$fe8kg+hofmxj44ogmg71%6ccf8e(2&@lr4fedl-wbx6-x1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+IS_HEROKU = "DYNO" in os.environ
 
-ALLOWED_HOSTS = ["*"]
+if not IS_HEROKU:
+    DEBUG = True
+
+
+if IS_HEROKU:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -127,8 +134,8 @@ USE_TZ = True
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = "static/"
-# STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / "staticfiles"
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIR = [
     # os.path.join(BASE_DIR, 'siteblog/static'),
